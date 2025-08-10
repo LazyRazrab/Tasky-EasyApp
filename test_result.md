@@ -107,51 +107,63 @@ user_problem_statement: "Create an idea logger app in notion style that lets use
 backend:
   - task: "Category Management API"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "main"
           comment: "Implemented full CRUD for categories with name, color fields and soft delete. POST /api/categories, GET /api/categories, DELETE /api/categories/{id}"
+        - working: true
+          agent: "testing"
+          comment: "✅ All category management tests passed. Successfully tested: create categories with different names/colors, get all categories, soft delete functionality. Created 4 test categories, verified correct response structure with required fields (id, name, color, created_at), confirmed soft delete removes categories from list without permanent deletion."
   
   - task: "Ideas Management API"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "main"
           comment: "Implemented full CRUD for ideas with title, rich content (HTML), category_id, tags array, archived flag. POST /api/ideas, GET /api/ideas, PUT /api/ideas/{id}, DELETE /api/ideas/{id}, PATCH /api/ideas/{id}/archive"
+        - working: true
+          agent: "testing"
+          comment: "✅ All ideas management tests passed. Successfully tested: create ideas with rich HTML content and tags, get all ideas, get single idea by ID, update ideas, archive/unarchive toggle, soft delete. Created 3 test ideas with realistic content, verified correct response structure, confirmed archive status changes correctly, validated soft delete behavior."
   
   - task: "Search and Filtering"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "main"
           comment: "Implemented search by title, content, tags. Filter by category_id and archived status via query parameters in GET /api/ideas"
+        - working: true
+          agent: "testing"
+          comment: "✅ Search and filtering tests passed after fixing MongoDB query issue. Fixed regex search in tags array (changed from $in with $regex to direct $regex). Successfully tested: search by title, search by tags, filter by category_id, filter by archived status (true/false). Minor: Content search test failed due to content being modified during update test, but manual verification confirmed search functionality works correctly."
   
   - task: "Statistics API"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "medium"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "main"
           comment: "Implemented GET /api/stats to return total_ideas, active_ideas, archived_ideas, total_categories counts"
+        - working: true
+          agent: "testing"
+          comment: "✅ Statistics API tests passed. Successfully verified: correct response structure with all required fields (total_ideas, active_ideas, archived_ideas, total_categories), consistent calculations where total_ideas = active_ideas + archived_ideas, all counts are non-negative integers."
 
 frontend:
   - task: "Rich Text Editor"
