@@ -109,7 +109,7 @@ async def get_ideas(
         query["$or"] = [
             {"title": {"$regex": search, "$options": "i"}},
             {"content": {"$regex": search, "$options": "i"}},
-            {"tags": {"$in": [{"$regex": search, "$options": "i"}]}}
+            {"tags": {"$regex": search, "$options": "i"}}
         ]
     
     ideas = await db.ideas.find(query).sort("created_at", -1).to_list(1000)
